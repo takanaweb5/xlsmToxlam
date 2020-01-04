@@ -1,48 +1,48 @@
 Attribute VB_Name = "xlsmToxlam"
 Option Explicit
 
-Sub ƒAƒhƒCƒ“•Û‘¶()
+Sub ã‚¢ãƒ‰ã‚¤ãƒ³ä¿å­˜()
 
-    'ƒAƒhƒCƒ“‚É•ÏŠ·‚·‚éƒtƒ@ƒCƒ‹‚ğæ“¾
+    'ã‚¢ãƒ‰ã‚¤ãƒ³ã«å¤‰æ›ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—
     Dim vFileName As Variant
-    vFileName = Application.GetOpenFilename("Excelƒtƒ@ƒCƒ‹,*.x*")
+    vFileName = Application.GetOpenFilename("Excelãƒ•ã‚¡ã‚¤ãƒ«,*.x*")
     If vFileName = False Then
         Exit Sub
     End If
     
     On Error Resume Next
     Dim objBook As Workbook
-'    Application.EnableEvents = False 'ƒ}ƒNƒ‚ÌÀs‚ğ—}§‚·‚é
-    Set objBook = Workbooks.Open(vFileName, 0, True) 'Link‚ÌXV‚ğ‚µ‚È‚¢AReadOnly
+'    Application.EnableEvents = False 'ãƒã‚¯ãƒ­ã®å®Ÿè¡Œã‚’æŠ‘åˆ¶ã™ã‚‹ â†’ Attribute ã‚’ã‚ã–ã¨æ›¸ãè¾¼ã¾ã›ã‚‹
+    Set objBook = Workbooks.Open(vFileName, 0, True) 'Linkã®æ›´æ–°ã‚’ã—ãªã„ã€ReadOnly
 '    Application.EnableEvents = True
     If objBook Is Nothing Then
-        Call MsgBox(vFileName & vbCrLf & " ‚ªŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½B")
+        Call MsgBox(vFileName & vbCrLf & " ãŒé–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚")
         Exit Sub
     End If
     On Error GoTo 0
     
-    'ƒAƒhƒCƒ“‚Ì‚Íİ’è—v
+    'ã‚¢ãƒ‰ã‚¤ãƒ³ã®æ™‚ã¯è¨­å®šè¦
     objBook.IsAddin = True
 
-'    'ƒtƒHƒ‹ƒ_–¼‚Æƒtƒ@ƒCƒ‹–¼‚ğæ“¾
-'    Dim strFolder As String 'ƒtƒHƒ‹ƒ_–¼
-'    Dim strFile   As String 'ƒtƒ@ƒCƒ‹–¼(Šg’£qœ‚­)
+'    'ãƒ•ã‚©ãƒ«ãƒ€åã¨ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—
+'    Dim strFolder As String 'ãƒ•ã‚©ãƒ«ãƒ€å
+'    Dim strFile   As String 'ãƒ•ã‚¡ã‚¤ãƒ«å(æ‹¡å¼µå­é™¤ã)
 '    With CreateObject("Scripting.FileSystemObject")
 '        strFolder = .GetParentFolderName(vFileName)
 '        strFile = .GetBaseName(vFileName)
 '    End With
     
-    'Šg’£q‚ğ.xlam‚É’uŠ·
+    'æ‹¡å¼µå­ã‚’.xlamã«ç½®æ›
     Dim strAddinFile As String
     With CreateObject("Scripting.FileSystemObject")
         strAddinFile = Replace(vFileName, "." & .GetExtensionName(vFileName), ".xlam")
     End With
     
     Dim strPassword As String
-    strPassword = InputBox("İ’è‚·‚éƒpƒXƒ[ƒh‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢")
+    strPassword = InputBox("è¨­å®šã™ã‚‹ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„")
     
     Call objBook.SaveAs(strAddinFile, xlOpenXMLAddIn, strPassword)
-    Call objBook.Close(False) '•Û‘¶‚¹‚¸‚É•Â‚¶‚é
+    Call objBook.Close(False) 'ä¿å­˜ã›ãšã«é–‰ã˜ã‚‹
     
-    Call MsgBox("ŒÂlî•ñ‚Ìíœ@‚Æ" & vbLf & "ƒo[ƒWƒ‡ƒ“”Ô†‚Ì•ÏX‚ğ–Y‚ê‚È‚¢‚Å‚­‚¾‚³‚¢")
+    Call MsgBox("å€‹äººæƒ…å ±ã®å‰Šé™¤ã€€ã¨" & vbLf & "ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·ã®å¤‰æ›´ã‚’å¿˜ã‚Œãªã„ã§ãã ã•ã„")
 End Sub
