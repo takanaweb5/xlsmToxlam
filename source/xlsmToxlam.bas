@@ -12,9 +12,9 @@ Sub アドイン保存()
     
     On Error Resume Next
     Dim objBook As Workbook
-    Application.EnableEvents = False 'マクロの実行を抑制する
+'    Application.EnableEvents = False 'マクロの実行を抑制する
     Set objBook = Workbooks.Open(vFileName, 0, True) 'Linkの更新をしない、ReadOnly
-    Application.EnableEvents = True
+'    Application.EnableEvents = True
     If objBook Is Nothing Then
         Call MsgBox(vFileName & vbCrLf & " が開けませんでした。")
         Exit Sub
