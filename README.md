@@ -1,1 +1,2 @@
 # xlsmToxlam
+xlsmファイルをアドインファイルに変換するEXCELマクロ
